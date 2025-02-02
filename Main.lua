@@ -56,7 +56,7 @@ local function followOrcasPool()
         humanoid.PlatformStand = true -- Prevents falling
         humanoidRootPart.Position = Vector3.new(0, 900, 0) -- Move player to the sky
         enableFloating()
-        TextLabel.Text = "[⌛] Waiting for orca.."
+        TextLabel.Text = "[⌛] Waiting.."
         return
     end
 
@@ -79,7 +79,7 @@ end
 local function toggleEnabled()
     enabled = not enabled
     print("Script enabled:", enabled)
-    TextLabel.Text = enabled and "[✅] Active!" or "[⌛] Waiting for orca.."
+    TextLabel.Text = enabled and "[✅] Active!" or "[⌛] Waiting.."
 
     if enabled then
         while enabled do
@@ -90,7 +90,7 @@ local function toggleEnabled()
     else
         humanoid.PlatformStand = false
         disableFloating()
-        TextLabel.Text = "[⌛] Waiting for orca.."
+        TextLabel.Text = "[⌛] Waiting.."
     end
 end
 
