@@ -14,6 +14,7 @@ local humanoid = character:WaitForChild("Humanoid")
 local enabled = false
 local orcasPool
 local bodyVelocity
+local bodyGyro
 local AutoOrcaGui = Instance.new("ScreenGui")
 local TextLabel = Instance.new("TextLabel")
 
@@ -38,9 +39,16 @@ TextLabel.TextWrapped = true
 local function enableFloating()
     if not bodyVelocity then
         bodyVelocity = Instance.new("BodyVelocity")
-        bodyVelocity.Velocity = Vector3.new(0, 0.1, 0) -- Slight upward force to keep floating
-        bodyVelocity.MaxForce = Vector3.new(0, math.huge, 0) -- Apply force only in the Y direction
+        bodyVelocity.Velocity = Vector3.new(0, 0.1, 0)
+        bodyVelocity.MaxForce = Vector3.new(0, math.huge, 0)
         bodyVelocity.Parent = humanoidRootPart
+    end
+
+    if not bodyGyro then
+        bodyGyro = Instance.new("BodyGyro")
+        bodyGyro.MaxTorque = Vector3.new(400000, 400000, 400000)
+        bodyGyro.CFrame = humanoidRootPart.CFrame
+        bodyGyro.Parent = humanoidRootPart
     end
 end
 
@@ -49,19 +57,24 @@ local function disableFloating()
         bodyVelocity:Destroy()
         bodyVelocity = nil
     end
+
+    if bodyGyro then
+        bodyGyro:Destroy()
+        bodyGyro = nil
+    end
 end
 
 local function followOrcasPool()
     if not orcasPool or not orcasPool:IsDescendantOf(workspace) then
-        humanoid.PlatformStand = true -- Prevents falling
-        humanoidRootPart.Position = Vector3.new(0, 900, 0) -- Move player to the sky
+        humanoid.PlatformStand = true
+        humanoidRootPart.Position = Vector3.new(0, 900, 0)
         enableFloating()
         TextLabel.Text = "[⌛] Waiting.."
         return
     end
 
     humanoid.PlatformStand = true
-    humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 50, 0) -- Further increased height above the object
+    humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 50, 0)
     enableFloating()
     TextLabel.Text = "[✅] Active!"
 
@@ -72,7 +85,7 @@ local function followOrcasPool()
             followOrcasPool()
             return
         end
-        humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 80, 0) -- Keep floating higher above
+        humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 80, 0)
     end)
 end
 
