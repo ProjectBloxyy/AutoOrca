@@ -1,5 +1,7 @@
 -- OPEN SOURCE BY @emilispy on discord
 
+print("Auto orca made by @emilispy, Enjoy!")
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -27,7 +29,7 @@ TextLabel.BorderSizePixel = 0
 TextLabel.Position = UDim2.new(0.69942075, 0, 0.948629558, 0)
 TextLabel.Size = UDim2.new(0, 178, 0, 34)
 TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "[⌛] Waiting for orca.."
+TextLabel.Text = "[🐟] Press 'P' to start."
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
