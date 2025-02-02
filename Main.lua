@@ -1,4 +1,4 @@
-local Keybind = Enum.KeyCode.P
+-- OPEN SOURCE BY @emilispy on discord
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -10,6 +10,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local humanoid = character:WaitForChild("Humanoid")
 local enabled = false
 local orcasPool
+local Keybind = Enum.KeyCode.P
 local bodyVelocity
 
 local AutoOrcaGui = Instance.new("ScreenGui")
@@ -36,8 +37,8 @@ TextLabel.TextWrapped = true
 local function enableFloating()
     if not bodyVelocity then
         bodyVelocity = Instance.new("BodyVelocity")
-        bodyVelocity.Velocity = Vector3.new(0, 0.1, 0)
-        bodyVelocity.MaxForce = Vector3.new(0, math.huge, 0)
+        bodyVelocity.Velocity = Vector3.new(0, 0.1, 0) -- Slight upward force to keep floating
+        bodyVelocity.MaxForce = Vector3.new(0, math.huge, 0) -- Apply force only in the Y direction
         bodyVelocity.Parent = humanoidRootPart
     end
 end
@@ -51,15 +52,15 @@ end
 
 local function followOrcasPool()
     if not orcasPool or not orcasPool:IsDescendantOf(workspace) then
-        humanoid.PlatformStand = true
-        humanoidRootPart.Position = Vector3.new(0, 500, 0)
+        humanoid.PlatformStand = true -- Prevents falling
+        humanoidRootPart.Position = Vector3.new(0, 500, 0) -- Move player to the sky
         enableFloating()
         TextLabel.Text = "[⌛] Waiting for orca.."
         return
     end
 
     humanoid.PlatformStand = true
-    humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 50, 0)
+    humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 50, 0) -- Further increased height above the object
     enableFloating()
     TextLabel.Text = "[✅] Active!"
 
@@ -70,7 +71,7 @@ local function followOrcasPool()
             followOrcasPool()
             return
         end
-        humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 80, 0)
+        humanoidRootPart.CFrame = orcasPool.CFrame + Vector3.new(0, 80, 0) -- Keep floating higher above
     end)
 end
 
