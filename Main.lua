@@ -10,7 +10,6 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local humanoid = character:WaitForChild("Humanoid")
 local enabled = false
 local orcasPool
-local Keybind = Enum.KeyCode.P
 local bodyVelocity
 
 local AutoOrcaGui = Instance.new("ScreenGui")
