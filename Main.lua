@@ -54,7 +54,7 @@ end
 local function followOrcasPool()
     if not orcasPool or not orcasPool:IsDescendantOf(workspace) then
         humanoid.PlatformStand = true -- Prevents falling
-        humanoidRootPart.Position = Vector3.new(0, 500, 0) -- Move player to the sky
+        humanoidRootPart.Position = Vector3.new(0, 900, 0) -- Move player to the sky
         enableFloating()
         TextLabel.Text = "[⌛] Waiting for orca.."
         return
