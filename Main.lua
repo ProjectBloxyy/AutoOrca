@@ -11,7 +11,6 @@ local humanoid = character:WaitForChild("Humanoid")
 local enabled = false
 local orcasPool
 local bodyVelocity
-
 local AutoOrcaGui = Instance.new("ScreenGui")
 local TextLabel = Instance.new("TextLabel")
 
